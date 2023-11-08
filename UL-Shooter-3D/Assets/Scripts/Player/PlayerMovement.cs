@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController characterController;
     private Transform myCamera;
+    [SerializeField]
+    private GameObject HealthUI;
 
     [SerializeField]
     private float MovementSpeed = 3f;
@@ -22,6 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float enemyDamage = 25f;
+    [SerializeField]
+    private float iframeDuration = 2f;
+    private bool isInvincible = false;
+
+    public GameObject[] weapons;
+    private int currentWeapon = 0;
+    [SerializeField]
+    private GameObject weaponUI;
 
     private void Awake()
     {
@@ -50,6 +60,21 @@ public class PlayerMovement : MonoBehaviour
             0f,
             0f
         );
+
+        //Cambio de arma
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            // Oculta el arma actual
+            weapons[currentWeapon].SetActive(false);
+
+            // Cambia al siguiente arma
+            currentWeapon = (currentWeapon + 1) % weapons.Length;
+            myCamera.GetComponent<PlayerFire>().shotgunActivator();
+            weaponUI.GetComponent<PlayerWeapon>().iconActivator();
+
+            // Muestra el nuevo arma
+            weapons[currentWeapon].SetActive(true);
+        }
     }
 
     private void Start()
@@ -88,10 +113,19 @@ public class PlayerMovement : MonoBehaviour
     //Le avisa al manager que hubo daño
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.gameObject.tag == "Enemy")
+        if(hit.gameObject.tag == "Enemy" && isInvincible == false)
         {
-            Debug.Log("Están pasando COSAS");
-            PlayerManager.Instance.PlayerDamage(enemyDamage);
+            HealthUI.GetComponent<PlayerHealth>().damageTaken(enemyDamage);
+            StartCoroutine(IFrames());
         }
     }
+
+    private IEnumerator IFrames()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(iframeDuration);
+        isInvincible = false;
+    }
+
+
 }

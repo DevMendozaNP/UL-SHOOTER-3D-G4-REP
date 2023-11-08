@@ -8,22 +8,6 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
-    [SerializeField]
-    private GameObject healthIcon;
-
-    #region Iconos de vida
-    [SerializeField]
-    private Sprite fullShieldIcon;
-    [SerializeField]
-    private Sprite noShieldIcon;
-    [SerializeField]
-    private Sprite damageIcon;
-    [SerializeField]
-    private Sprite nearDeathIcon;
-    [SerializeField]
-    private Sprite deathIcon;
-    private Sprite currentHealthIcon;
-    #endregion
 
     #region Contadores de vida y escudo
     [SerializeField]
@@ -39,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private float shieldCountStart = 100f;
     private float healthCounter;
     private float shieldCounter;
+    private float healthCounterUpdate;
     #endregion
 
     private void Start()
@@ -49,24 +34,6 @@ public class PlayerHealth : MonoBehaviour
 
         healthCount.text = healthCountStart.ToString();
         shieldCount.text = shieldCountStart.ToString();
-
-        //Sincronizando los contadores
-        Image healthIcon = GetComponent<Image>();
-        healthIcon.sprite = currentHealthIcon;
-
-        // Registro como Observer
-        PlayerManager.Instance.AddOnPlayerObserver(damageTaken);
-    }
-    
-
-    private void Update()
-    {
-        //healthIcon.GetComponent<Image>().sprite = currentHealthIcon;
-
-        if(currentHealthIcon == deathIcon)
-        {
-            Destroy(player);
-        }
     }
 
     public void damageTaken(float damage)
@@ -75,36 +42,15 @@ public class PlayerHealth : MonoBehaviour
         {
             shieldCounter -= damage;
             shieldCount.text = shieldCounter.ToString();
+            this.gameObject.GetComponent<PlayerIcon>().damageChange(damage);
         }
-        else
+        else if (shieldCounter == 0f)
         {
             healthCounter -= damage;
-            healthCount.text = healthCounter.ToString();
+            healthCounterUpdate = Mathf.Clamp(healthCounter, 0f, 100f);
+            healthCount.text = healthCounterUpdate.ToString();
+            this.gameObject.GetComponent<PlayerIcon>().damageChange(damage);
         }
     }
 
-    private void iconChanger()
-    {
-        if (shieldCounter > 0f)
-        {
-            currentHealthIcon = fullShieldIcon;
-        }
-        else if (shieldCounter <= 0f && healthCounter > 50f)
-        {
-            currentHealthIcon = noShieldIcon;
-        }
-        else if (shieldCounter <= 0f && healthCounter == 50f)
-        {
-            currentHealthIcon = damageIcon;
-        }
-        else if (shieldCounter <= 0f && healthCounter == 25f)
-        {
-            currentHealthIcon = nearDeathIcon;
-        }
-        else if (shieldCounter <= 0f && healthCounter <= 0f)
-        {
-            currentHealthIcon = deathIcon;
-        }
-    }
-    
 }

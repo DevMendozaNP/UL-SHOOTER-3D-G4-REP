@@ -370,7 +370,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Player/PlayerFire.cs"
 "Assets/Scripts/Player/PlayerHealth.cs"
-"Assets/Scripts/Player/PlayerManager.cs"
+"Assets/Scripts/Player/PlayerIcon.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/Player/PlayerWeapon.cs"
 -langversion:9.0

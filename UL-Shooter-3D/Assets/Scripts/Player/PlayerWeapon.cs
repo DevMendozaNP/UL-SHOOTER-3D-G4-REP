@@ -6,15 +6,28 @@ using TMPro;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject shotgunIcon;
+    [SerializeField]
+    private GameObject rifleIcon;
+    private bool shotgunSaturdayNight = false;
 
-    // Update is called once per frame
-    void Update()
+    public void iconActivator()
     {
+        if (shotgunSaturdayNight == false)
+        {
+            shotgunSaturdayNight = true;
+            this.rifleIcon.SetActive(false);
+            this.shotgunIcon.SetActive(true);
+            
+
+        }
+        else if (shotgunSaturdayNight == true)
+        {
+            shotgunSaturdayNight = false;
+            this.rifleIcon.SetActive(true);
+            this.shotgunIcon.SetActive(false);
+        }
         
     }
 }

@@ -260,9 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2929107ff75885446966ecfad65e5a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthUI: {fileID: 0}
   MovementSpeed: 3
   RotationSpeedHorizontal: 5
   RotationSpeedVertical: 3
+  enemyDamage: 25
 --- !u!143 &2783653297511365879
 CharacterController:
   m_ObjectHideFlags: 0

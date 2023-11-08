@@ -103,11 +103,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 4142138274292164831, guid: bed7f27f2e9867749864eca7431b84a8, type: 3}
-  DistanceToFollow: 15
+  DistanceToFollow: 10
   DistanceToAttack: 3
   Speed: 1
   FirePoint: {fileID: 0}
   CoolDownTime: 1
+  life: 3
+  pointsWatcher: {fileID: 3530984948664253250, guid: 0a73abdb139c10847a6030edda731386, type: 3}
 --- !u!54 &1257018540989918041
 Rigidbody:
   m_ObjectHideFlags: 0

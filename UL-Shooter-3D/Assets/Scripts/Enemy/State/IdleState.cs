@@ -34,7 +34,7 @@ public class IdleState : State
     
     public override void OnStart()
     {
-        //Debug.Log("Estado Idle Start");
+        Debug.Log("Estado Idle Start");
         //controller.rb.velocity = Vector3.zero;
         controller.agent.isStopped = true;
     }
@@ -45,6 +45,6 @@ public class IdleState : State
     }
     public override void OnFinish()
     {
-        //Debug.Log("Estado Idle Finish");
+        Debug.Log("Estado Idle Finish");
     }
 }

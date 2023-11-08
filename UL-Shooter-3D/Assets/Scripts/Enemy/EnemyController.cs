@@ -27,7 +27,11 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent agent {private set; get;}
     #endregion
 
-    
+    [SerializeField]
+    private float life = 3f;
+    [SerializeField]
+    private GameObject pointsWatcher;
+    private float points;
 
     private void Awake() 
     {
@@ -61,5 +65,17 @@ public class EnemyController : MonoBehaviour
             }
         }
         currentState.OnUpdate();    
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("Te estoy dañando");
+        life -= damage;
+        if (life <= 0f)
+        {
+            points = 1;
+            pointsWatcher.GetComponent<PointsCounter>().PointsUpdater(points);
+            Destroy(this.gameObject);
+        }
     }
 }

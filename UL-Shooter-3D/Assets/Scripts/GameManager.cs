@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
     private float TimerTime = 0.0f;
     private float timer = 0.0f;
 
+    [SerializeField]
+    private GameObject Enemy;
+    public Transform PlayerRef;
+    private EnemyController enemyController;
+
+
     private void Awake()
     {
         timer = TimerTime;
@@ -27,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        enemyController = Enemy.GetComponent<EnemyController>();
+        enemyController.Player = PlayerRef;
+
         EnemyAmountPerPoint = TotalEnemyAmount / 3;
         Residuo = TotalEnemyAmount % 3;
         SpawnPoint1.SpawnEnemy(EnemyAmountPerPoint);
