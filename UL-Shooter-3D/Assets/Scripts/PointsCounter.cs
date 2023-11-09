@@ -1,30 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class PointsCounter : MonoBehaviour
 {
-    public GameObject Thanks;
+    public GameObject Counter;
     private TextMeshProUGUI texto; 
-    public float finalPoints;
+    public float finalPoints = 0f;
 
-    void Awake()
-    {
-        texto = Thanks.GetComponent<TextMeshProUGUI>();
-        texto.text = "Muchas gracias por jugar!";
-        Time.timeScale = 0;
-        //texto.text = "Muchas gracias por jugar!<br>Tu puntaje fue: " + finalPoints;
-    }
-
+    // Start is called before the first frame update
     void Start()
     {
+        texto = Counter.GetComponent<TextMeshProUGUI>();
+        texto.text = finalPoints.ToString();
     }
 
+    // Update is called once per frame
     void Update()
     {
+        texto.text = finalPoints.ToString();
     }
 
     public void PointsUpdater(float newPoints)

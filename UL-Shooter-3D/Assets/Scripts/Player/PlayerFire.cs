@@ -11,9 +11,11 @@ public class PlayerFire : MonoBehaviour
     private bool shotgunSaturdayNight = false;
     
     [SerializeField]
-    private float rifleBullets = 100f;
+    private float rifleBulletsStart = 100f;
     [SerializeField]
-    private float shotgunBullets = 50f;
+    private float shotgunBulletsStart = 50f;
+    private float rifleBullets;
+    private float shotgunBullets;
     private float numberOfBullets;
 
     [SerializeField]
@@ -21,6 +23,8 @@ public class PlayerFire : MonoBehaviour
 
     private void Awake()
     {
+        rifleBullets = rifleBulletsStart;
+        shotgunBullets = shotgunBulletsStart;
         numberOfBullets = rifleBullets;
     }
 
@@ -128,5 +132,21 @@ public class PlayerFire : MonoBehaviour
             weaponUI.GetComponent<PlayerBullets>().bulletUpdater(numberOfBullets);
         }
         
+    }
+
+    public void bulletRecharge()
+    {
+        if (shotgunSaturdayNight == false)
+        {
+            rifleBullets = rifleBulletsStart;
+            numberOfBullets = rifleBullets;
+            weaponUI.GetComponent<PlayerBullets>().bulletUpdater(numberOfBullets);
+        }
+        else if (shotgunSaturdayNight == true)
+        {
+            shotgunBullets = shotgunBulletsStart;
+            numberOfBullets = shotgunBullets;
+            weaponUI.GetComponent<PlayerBullets>().bulletUpdater(numberOfBullets);
+        }
     }
 }

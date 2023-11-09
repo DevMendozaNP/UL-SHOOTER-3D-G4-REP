@@ -75,6 +75,12 @@ public class PlayerMovement : MonoBehaviour
             // Muestra el nuevo arma
             weapons[currentWeapon].SetActive(true);
         }
+
+        //recarga
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            myCamera.GetComponent<PlayerFire>().bulletRecharge();
+        }
     }
 
     private void Start()

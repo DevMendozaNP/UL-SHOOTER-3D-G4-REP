@@ -7,9 +7,9 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public GameObject GO;
-    private float Cooldown = 60;
-    private float NewCooldown = 60;
-    private int tiempo = 60;
+    private float Cooldown = 15;
+    private float NewCooldown = 15;
+    private int tiempo = 15;
     private TextMeshProUGUI texto;
 
     void Start()

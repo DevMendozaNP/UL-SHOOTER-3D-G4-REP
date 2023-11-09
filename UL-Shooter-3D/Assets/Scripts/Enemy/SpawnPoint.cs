@@ -6,6 +6,7 @@ public class SpawnPoint : MonoBehaviour
 {
     [SerializeField]
     private GameObject Enemy;
+    private GameObject  test;
     public Transform PlayerRef;
     private EnemyController enemyController;
 
@@ -19,8 +20,8 @@ public class SpawnPoint : MonoBehaviour
     {
         for(int i = 0; i < EnemyAmount; i++)
         {
-            Enemy = Instantiate(Enemy);
-            Enemy.transform.position = transform.position;
+            test = Instantiate(Enemy);
+            test.transform.position = transform.position;
         }
     }
 

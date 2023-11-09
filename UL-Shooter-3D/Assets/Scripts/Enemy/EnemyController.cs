@@ -29,8 +29,6 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private float life = 3f;
-    [SerializeField]
-    private GameObject pointsWatcher;
     private float points;
 
     private void Awake() 
@@ -74,7 +72,8 @@ public class EnemyController : MonoBehaviour
         if (life <= 0f)
         {
             points = 1;
-            pointsWatcher.GetComponent<PointsCounter>().PointsUpdater(points);
+            FindObjectOfType<PointsCounter>().PointsUpdater(points);
+            //pointsWatcher.GetComponent<PointsCounter>().PointsUpdater(points);
             Destroy(this.gameObject);
         }
     }

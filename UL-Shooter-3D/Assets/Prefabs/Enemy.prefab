@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641fa96f4bff44b4eaa45a5a6a3eca2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 4142138274292164831, guid: bed7f27f2e9867749864eca7431b84a8, type: 3}
-  DistanceToFollow: 10
+  Player: {fileID: 0}
+  DistanceToFollow: 20
   DistanceToAttack: 3
   Speed: 1
   FirePoint: {fileID: 0}

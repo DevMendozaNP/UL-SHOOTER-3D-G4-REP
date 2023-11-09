@@ -348,6 +348,7 @@
 "Assets/Scripts/Enemy/Timer.cs"
 "Assets/Scripts/Enemy/Transition.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GameOver.cs"
 "Assets/Scripts/Player/PlayerBullets.cs"
 "Assets/Scripts/Player/PlayerFire.cs"
 "Assets/Scripts/Player/PlayerHealth.cs"
